@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+  http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test" pageWidth="595"
+  pageHeight="842" columnWidth="535"
+  leftMargin="20" rightMargin="20" topMargin="20"
+  bottomMargin="20" uuid="a6b5b17a-e37b-4890-9fc9-fcc7cb06169c">
+
+  <property name="ireport.zoom" value="1.0"/>
+  <property name="ireport.x" value="0"/>
+  <property name="ireport.y" value="0"/>
+ 
+  <style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+  <style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+  <style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+  <style name="Detail" fontName="Arial" fontSize="12"/>
+  <style name="table">
+    <box>
+      <pen lineWidth="1.0" lineColor="#000000"/>
+    </box>
+  </style>
+  <style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+    <box>
+      <pen lineWidth="0.5" lineColor="#000000"/>
+    </box>
+  </style>
+  <style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+    <box>
+      <pen lineWidth="0.5" lineColor="#000000"/>
+    </box>
+  </style>
+  <style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+    <box>
+      <pen lineWidth="0.5" lineColor="#000000"/>
+    </box>
+    <conditionalStyle>
+      <conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+      <style backcolor="#EFF7FF"/>
+    </conditionalStyle>
+  </style>
+ 
+  <parameter name="paramLogFilePath" class="java.lang.String"/>
+ 
+  <queryString>
+    <![CDATA[]]>
+  </queryString>
+  
+  <field name="addDate" class="java.lang.String"/>
+  <field name="name" class="java.lang.String"/>
+  <field name="email" class="java.lang.String"/>
+  <field name="website" class="java.lang.String"/>
+  <field name="subject" class="java.lang.String"/>
+  <field name="message" class="java.lang.String"/>
+  <field name="recordStatus" class="java.lang.String"/>
+  
+  <background>
+    <band splitType="Stretch"/>
+  </background>
+  
+  <title> 
+    <band height="68" splitType="Stretch">
+      <image>
+        <reportElement uuid="151fa442-13bd-4561-91e4-04867d3e0021" x="275" y="0" width="300" height="64"/>
+        <imageExpression><![CDATA[$P{paramLogFilePath}]]></imageExpression>
+      </image>
+      <staticText>
+        <reportElement uuid="b4e32db9-4510-4452-9954-10dda6d4ed23" style="Title" x="0" y="13" width="263" height="33"/>
+        <textElement verticalAlignment="Middle"/>
+        <text><![CDATA[JasperReport Example]]></text>
+      </staticText>
+      <staticText>
+        <reportElement uuid="f423a1a0-d4ef-4294-9d71-3d2e14e9d29d" style="SubTitle" x="117" y="46" width="157" height="22"/>
+        <textElement/>
+        <text><![CDATA[JasperReports Test by rockPLACE]]></text>
+      </staticText>
+    </band>
+  </title>
+  
+  <pageHeader>
+    <band splitType="Stretch"/>
+  </pageHeader>
+  
+  <columnHeader>
+	<band height="68" splitType="Stretch">
+      <line>
+        <reportElement uuid="e16f96b6-7469-4d09-bc6a-763b4ca4a1c1" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+        <graphicElement>
+          <pen lineWidth="0.5" lineColor="#999999"/>
+        </graphicElement>
+      </line>
+      <staticText>
+        <reportElement uuid="22d26c8a-c98c-4407-8682-0bdc501eabbe" x="0" y="15" width="74" height="20" forecolor="#999999"/>
+        <textElement>
+          <font size="11" isBold="true"/>
+        </textElement>
+        <text><![CDATA[DATE]]></text>
+      </staticText>
+      <staticText>
+        <reportElement uuid="9f47c603-ccea-4d41-8ec3-bbeeeed9d88f" x="84" y="16" width="100" height="20" forecolor="#999999"/>
+        <textElement>
+          <font size="11" isBold="true"/>
+        </textElement>
+        <text><![CDATA[NAME]]></text>
+      </staticText>
+      <staticText>
+        <reportElement uuid="299942ac-837f-43c3-a398-e6be15ed9eb1" x="207" y="16" width="100" height="20" forecolor="#999999"/>
+        <textElement>
+          <font size="11" isBold="true"/>
+        </textElement>
+        <text><![CDATA[EMAIL]]></text>
+      </staticText>
+      <staticText>
+        <reportElement uuid="08d67324-8b0b-479d-ba05-3cf7d115ebe1" x="333" y="15" width="100" height="20" forecolor="#999999"/>
+        <textElement>
+          <font size="11" isBold="true"/>
+        </textElement>
+        <text><![CDATA[SUBJECT]]></text>
+      </staticText>
+      <staticText>
+        <reportElement uuid="305b765a-0bba-4254-84c9-64c9756e4e7d" x="453" y="16" width="100" height="20" forecolor="#999999"/>
+        <textElement>
+          <font size="11" isBold="true"/>
+        </textElement>
+        <text><![CDATA[MESSAGE]]></text>
+      </staticText>
+    </band>
+  </columnHeader>
+  
+  
+  <detail>
+    <band height="22" splitType="Stretch">
+      <textField>
+        <reportElement uuid="25736e6c-762f-4606-bf2e-95b4a09e734f" x="0" y="0" width="74" height="20"/>
+        <textElement/>
+        <textFieldExpression><![CDATA[$F{addDate}]]></textFieldExpression>
+      </textField>
+      <textField>
+        <reportElement uuid="974f11b2-36c2-4990-a4f0-fec7f9577063" x="84" y="1" width="100" height="20"/>
+        <textElement/>
+        <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+      </textField>
+      <textField>
+        <reportElement uuid="b3f6bff9-e25e-41b3-9c6a-42c654de68f2" x="208" y="2" width="100" height="20"/>
+        <textElement/>
+        <textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+      </textField>
+      <textField>
+        <reportElement uuid="0149f58a-6872-46b8-be42-77e282f0c592" x="333" y="2" width="100" height="20"/>
+        <textElement/>
+        <textFieldExpression><![CDATA[$F{subject}]]></textFieldExpression>
+      </textField>
+      <textField>
+        <reportElement uuid="836eab83-b4a1-484f-9a35-2f43c08f7f8e" x="453" y="0" width="100" height="20"/>
+        <textElement/>
+        <textFieldExpression><![CDATA[$F{message}]]></textFieldExpression>
+      </textField>
+    </band>
+  </detail>
+  
+  
+  <columnFooter>
+    <band height="45" splitType="Stretch">
+      <line>
+        <reportElement uuid="f74f05f1-d25c-4891-b570-450d0a554e35" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+        <graphicElement>
+          <pen lineWidth="0.5" lineColor="#999999"/>
+        </graphicElement>
+      </line>
+    </band>
+  </columnFooter>
+  
+  
+  <pageFooter>
+    <band height="20" splitType="Stretch">
+      <textField>
+        <reportElement uuid="a42a8c28-80d1-48d1-9285-64334068086b" style="Column header" x="433" y="0" width="80" height="20"/>
+        <textElement textAlignment="Right">
+          <font size="10" isBold="false"/>
+        </textElement>
+        <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+      </textField>
+      <textField evaluationTime="Report">
+        <reportElement uuid="911af05f-db59-47c7-8a82-7ce1f97be651" style="Column header" x="513" y="0" width="40" height="20"/>
+        <textElement>
+          <font size="10" isBold="false"/>
+        </textElement>
+        <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+      </textField>
+      <textField pattern="EEEEE dd MMMMM yyyy">
+        <reportElement uuid="1d95abb9-75cd-4319-836d-47810548f5ad" style="Column header" x="0" y="0" width="197" height="20"/>
+        <textElement>
+          <font size="10" isBold="false"/>
+        </textElement>
+        <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+      </textField>
+    </band>
+  </pageFooter>
+  
+  <summary>
+    <band splitType="Stretch"/>
+  </summary>
+  
+</jasperReport>
